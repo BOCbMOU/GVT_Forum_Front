@@ -1,0 +1,19 @@
+{  
+  "env": {
+    "node": true,
+    "es6": true,
+    "mocha": true
+  },
+  "extends": ["airbnb-base", "prettier"],
+  "plugins": ["import", "prettier", "react"],
+  "rules": {
+    "function-paren-newline": ["off"],
+    "prettier/prettier": "error"
+  },
+  "settings": {
+    "import/extensions": [
+      ".js",
+      ".jsx"
+    ]
+  }
+}
