@@ -10,7 +10,7 @@ const getTopCategories = ({ token }) => dispatch => {
       if (response && response.status === 200) {
         const { payload } = response.data;
         dispatch({
-          type: "GET_TOP_CATEGORIES",
+          type: "GET_CATEGORIES",
           payload: payload.categories
         });
       }

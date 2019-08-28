@@ -8,18 +8,18 @@ class Home extends Component {
   }
 
   render() {
-    const { categories } = this.props;
-    if (categories.length < 1) {
+    const { value: categories } = this.props.categories;
+    if (!categories) {
       return <Spinner color="#00BFFF" />;
     }
 
     return (
-      <div className="top-categories">
-        <ul className="top-category">
+      <div className="top-categories-div">
+        <ul className="top-categories-ul">
           {categories.map(category => (
             <li key={category._id}>
-              <Link to={`/categories/${category._id}`}>
-                <h3>{category.name}</h3>
+              <Link to={`/category/${category._id}/page_1`}>
+                <h2>{category.name}</h2>
               </Link>
               <span>{category.description}</span>
             </li>
