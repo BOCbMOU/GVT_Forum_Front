@@ -2,7 +2,8 @@ import { connect } from "react-redux";
 import {
   getCategoryById,
   getCategoryChildren,
-  getCategoryTopics
+  getCategoryTopics,
+  resetCategory
 } from "./Category.Action";
 import Category from "./Category";
 
@@ -13,5 +14,5 @@ const stateToProps = state => ({
 
 export default connect(
   stateToProps,
-  { getCategoryById, getCategoryChildren, getCategoryTopics }
+  { getCategoryById, getCategoryChildren, getCategoryTopics, resetCategory }
 )(Category);

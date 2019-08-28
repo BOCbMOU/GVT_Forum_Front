@@ -76,4 +76,15 @@ const getCategoryTopics = ({ token }, categoryId, page) => dispatch => {
     });
 };
 
-export { getCategoryById, getCategoryChildren, getCategoryTopics };
+const resetCategory = () => dispatch => {
+  dispatch({
+    type: "RESET_CATEGORY"
+  });
+};
+
+export {
+  getCategoryById,
+  getCategoryChildren,
+  getCategoryTopics,
+  resetCategory
+};

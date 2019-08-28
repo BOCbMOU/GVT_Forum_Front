@@ -1,4 +1,8 @@
-const categories = (state = { value: null, children: null }, action) => {
+const categories = (
+  // value: {}, children: []
+  state = { value: null, children: null },
+  action
+) => {
   switch (action.type) {
     case "GET_CATEGORIES":
       return { ...state, value: action.payload };

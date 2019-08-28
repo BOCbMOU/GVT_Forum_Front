@@ -1,14 +1,54 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import Spinner from "../../components/Spinner";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import Spinner from '../../components/Spinner';
 
 class Category extends Component {
+  state = {
+    categoryId: this.props.match.params.categoryId,
+    page: this.props.match.params.page,
+  };
+
   componentDidMount() {
-    const { categoryId, page } = this.props.match.params;
+    const { categoryId, page } = this.state;
     this.props.getCategoryById(this.props.user, categoryId);
     this.props.getCategoryChildren(this.props.user, categoryId);
     this.props.getCategoryTopics(this.props.user, categoryId, page);
   }
+
+  static getDerivedStateFromProps(newProps, state) {
+    const { categoryId, page } = newProps.match.params;
+    if (categoryId !== state.categoryId) {
+      newProps.resetCategory();
+      newProps.getCategoryById(newProps.user, categoryId);
+      newProps.getCategoryChildren(newProps.user, categoryId);
+      newProps.getCategoryTopics(newProps.user, categoryId, page);
+      return {
+        categoryId,
+        page,
+      };
+    }
+    if (page !== state.page) {
+      newProps.getCategoryTopics(newProps.user, categoryId, page);
+      return {
+        page,
+      };
+    }
+    return null;
+  }
+
+  componentWillUnmount() {
+    this.props.resetCategory();
+  }
+
+  //   onLinkClick = () => {
+  //     this.props.resetCategory();
+  //     setTimeout(() => {
+  //       const { categoryId, page } = this.props.match.params;
+  //       this.props.getCategoryById(this.props.user, categoryId);
+  //       this.props.getCategoryChildren(this.props.user, categoryId);
+  //       this.props.getCategoryTopics(this.props.user, categoryId, page);
+  //     }, 0);
+  //   };
 
   render() {
     const { value: category, children, topics } = this.props.category;
@@ -33,7 +73,7 @@ class Category extends Component {
         <ul className="category-topics">
           {topics.map(topic => (
             <li key={topic._id}>
-              <Link to={`/topic/${topic._id}`}>
+              <Link to={`/topic/${topic._id}/page_1`}>
                 <h4>{topic.title}</h4>
               </Link>
               <span>{topic.username}</span>

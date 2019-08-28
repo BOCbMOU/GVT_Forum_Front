@@ -1,5 +1,6 @@
 const category = (
-  state = { value: null, children: [], topics: [] },
+  // value: {}, children: [], topics: []
+  state = { value: null, children: null, topics: null },
   action
 ) => {
   switch (action.type) {
@@ -10,7 +11,7 @@ const category = (
     case "GET_CATEGORY_TOPICS":
       return { ...state, topics: action.payload };
     case "RESET_CATEGORY":
-      return { value: null, children: [], topics: [] };
+      return { value: null, children: null, topics: null };
     default:
       return state;
   }
