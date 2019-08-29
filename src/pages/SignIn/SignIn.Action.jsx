@@ -27,7 +27,7 @@ const signInUser = user => dispatch => {
       dispatch(
         error({
           title: 'Sign In failed! Check email and password!',
-          message: err.response.data.error,
+          message: err.response.status,
           position: 'tr',
           autoDismiss: 5,
         })

@@ -49,28 +49,37 @@ class Category extends Component {
     }
 
     return (
-      <div className="category">
-        <h2>{category.name}</h2>
-        <span>{category.description}</span>
-        <Link to={`/category/${category._id}/add_topic`}>New Topic</Link>
-        <ul className="category-children">
+      <div className="card">
+        <h2 className="card-header">{category.name}</h2>
+        <span className="card-text ml-2">{category.description}</span>
+        <Link
+          to={`/category/${category._id}/add_topic`}
+          className="btn btn-dark ml-auto mr-2"
+        >
+          New Topic
+        </Link>
+        <ul className="card-body pt-0 pb-0">
+          <h5 className="card-header">Categories</h5>
           {children.map(category => (
-            <li key={category._id}>
+            <li key={category._id} className="btn border p-0 m-1">
               <Link to={`/category/${category._id}/page_1`}>
-                <h3>{category.name}</h3>
+                <h3 className="btn m-0">{category.name}</h3>
               </Link>
-              <span>{category.description}</span>
+              <p className="card-text">{category.description}</p>
             </li>
           ))}
         </ul>
-        <ul className="category-topics">
+        <ul className="card-body pt-0 pb-0">
+          <h5 className="card-header">Topics</h5>
           {/* TODO: create separate topics component */}
           {topics.map(topic => (
-            <li key={topic._id}>
+            <li key={topic._id} className="btn border p-1 pb-0 m-1">
               <Link to={`/topic/${topic._id}/page_1`}>
-                <h4>{topic.title}</h4>
+                <h4 className="btn m-0 p-0 mb-2 mr-5">{topic.title}</h4>
               </Link>
-              <span>{topic.username}</span>
+              <Link to={`/user/${topic.username}`} className="font-italic">
+                By: {topic.username}
+              </Link>
             </li>
           ))}
         </ul>

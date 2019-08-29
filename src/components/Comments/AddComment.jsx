@@ -15,12 +15,18 @@ const AddComment = ({ user, topicId, addComment }) => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className="card ml-2 mr-2 p-2">
       <div className="">
-        <h4 htmlFor="">Add comment</h4>
-        <textarea name="message" onChange={onMessageChange} className="" />
+        <h4 htmlFor="" className="card-title ml-1">
+          Add comment
+        </h4>
+        <textarea
+          name="message"
+          onChange={onMessageChange}
+          className="form-control mb-2"
+        />
       </div>
-      <button type="submit" className="">
+      <button type="submit" className="btn btn-dark mr-auto ml-2">
         Add Comment
       </button>
     </form>

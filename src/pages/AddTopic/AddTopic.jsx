@@ -26,15 +26,28 @@ export class AddTopic extends Component {
     }
 
     return (
-      <div>
-        <h2>Create New Topic</h2>
+      <div className="card">
+        <h2 className="card-header">Create New Topic</h2>
         <form onSubmit={this.onSubmit}>
-          <div className="">
-            <label htmlFor="title">Title:</label>
-            <input type="text" name="title" onChange={this.onChange} />
-            <textarea name="message" onChange={this.onChange} className="" />
+          <div className="input-group m-2">
+            <label htmlFor="title" className="input-group-text">
+              Title:
+            </label>
+            <input
+              type="text"
+              name="title"
+              onChange={this.onChange}
+              className="form-control"
+            />
           </div>
-          <button type="submit" className="">
+          <div className="m-2">
+            <textarea
+              name="message"
+              onChange={this.onChange}
+              className="form-control"
+            />
+          </div>
+          <button type="submit" className="btn btn-dark mr-auto ml-2 mb-2">
             Create
           </button>
         </form>

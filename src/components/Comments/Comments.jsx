@@ -39,10 +39,10 @@ class Comments extends Component {
       <Fragment>
         <ul className="topic-comments">
           {comments.map(comment => (
-            <li key={comment._id}>
-              <h4>{comment.username}</h4>
-              <span>{comment.createdAt}</span>
-              <div>{comment.message}</div>
+            <li key={comment._id} className="card p-2">
+              <h4 className="card-header">{comment.username}</h4>
+              <span className="card-title">{comment.createdAt}</span>
+              <div className="card-text">{comment.message}</div>
             </li>
           ))}
         </ul>

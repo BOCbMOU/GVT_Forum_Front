@@ -19,7 +19,7 @@ const getTopCategories = ({ token = '' }) => dispatch => {
       dispatch(
         error({
           title: 'Get top categories failed!',
-          message: err,
+          message: err.response.status,
           position: 'tr',
         })
       );

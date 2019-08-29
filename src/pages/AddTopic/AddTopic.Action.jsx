@@ -25,7 +25,7 @@ const addTopic = (
       dispatch(
         error({
           title: 'Add topic failed!',
-          message: err,
+          message: err.response.status,
           position: 'tr',
         })
       );

@@ -19,7 +19,7 @@ const getTopicById = ({ token = '' }, topicId) => dispatch => {
       dispatch(
         error({
           title: 'Get topic by id failed!',
-          message: err,
+          message: err.response.status,
           position: 'tr',
         })
       );

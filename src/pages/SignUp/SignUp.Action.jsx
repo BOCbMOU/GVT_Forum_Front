@@ -23,7 +23,7 @@ const signUpUser = user => dispatch => {
       dispatch(
         error({
           title: 'Sign Up failed',
-          message: err.response.data.error,
+          message: err.response.status,
           position: 'tr',
         })
       );

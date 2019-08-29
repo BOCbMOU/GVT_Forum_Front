@@ -19,7 +19,7 @@ const getCategoryById = ({ token = '' }, categoryId) => dispatch => {
       dispatch(
         error({
           title: 'Get category by id failed!',
-          message: err,
+          message: err.response.status,
           position: 'tr',
         })
       );
@@ -44,7 +44,7 @@ const getCategoryChildren = ({ token = '' }, categoryId) => dispatch => {
       dispatch(
         error({
           title: 'Get category children failed!',
-          message: err,
+          message: err.response.status,
           position: 'tr',
         })
       );
@@ -69,7 +69,7 @@ const getCategoryTopics = ({ token = '' }, categoryId, page) => dispatch => {
       dispatch(
         error({
           title: 'Get category topics failed!',
-          message: err,
+          message: err.response.status,
           position: 'tr',
         })
       );

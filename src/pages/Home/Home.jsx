@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import Spinner from "../../components/Spinner";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import Spinner from '../../components/Spinner';
 
 class Home extends Component {
   componentDidMount() {
@@ -17,11 +17,13 @@ class Home extends Component {
       <div className="top-categories-div">
         <ul className="top-categories-ul">
           {categories.map(category => (
-            <li key={category._id}>
+            <li key={category._id} className="card">
               <Link to={`/category/${category._id}/page_1`}>
-                <h2>{category.name}</h2>
+                <div className="card-header">{category.name}</div>
               </Link>
-              <span>{category.description}</span>
+              <div className="card-body">
+                <span>{category.description}</span>
+              </div>
             </li>
           ))}
         </ul>

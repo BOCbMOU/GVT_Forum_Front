@@ -27,18 +27,17 @@ class User extends Component {
   }
 
   render() {
-    const { username, avatar, accessLevel, createdAt } = this.props.userInfo;
-    if (!username) {
+    if (!this.props.userInfo) {
       return <Spinner color="#00BFFF" />;
     }
+    const { username, avatar, accessLevel, createdAt } = this.props.userInfo;
 
     return (
-      <div className="user-info">
-        <h2>{username}</h2>
-        <p>{avatar}</p>
-        <img src={avatar} alt="avatar" />
-        <p>{accessLevel}</p>
-        <p>{createdAt}</p>
+      <div className="">
+        <h2 className="card-header">{username}</h2>
+        <img src={avatar} alt="avatar" className="rounded m-3" />
+        <p className="card-text">{`Access Level: ${accessLevel}`}</p>
+        <p className="card-text">{`Created at: ${createdAt}`}</p>
       </div>
     );
   }

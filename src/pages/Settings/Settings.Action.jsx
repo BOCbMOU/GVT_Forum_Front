@@ -31,7 +31,7 @@ const updateAvatar = ({ token = '' }, avatar) => dispatch => {
       dispatch(
         error({
           title: 'Update avatar failed!',
-          message: err,
+          message: err.response.status,
           position: 'tr',
         })
       );
@@ -56,7 +56,7 @@ const getUserInfo = ({ token = '' }) => dispatch => {
       dispatch(
         error({
           title: 'Get settings failed!',
-          message: err,
+          message: err.response.status,
           position: 'tr',
         })
       );

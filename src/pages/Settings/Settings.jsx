@@ -36,16 +36,25 @@ export class Settings extends Component {
 
     return (
       <Fragment>
-        <h2>{username}</h2>
-        <p>{email}</p>
-        <p>{accessLevel}</p>
-        {avatar ? <img src={avatar} alt="avatar" /> : null}
-        <form onSubmit={this.onSubmit}>
+        <h2 className="card-header">{username}</h2>
+        <span className="card-text">{email}</span>
+        <p className="card-text">{accessLevel}</p>
+        {avatar ? (
+          <img src={avatar} alt="avatar" className="rounded m-3" />
+        ) : null}
+        <form onSubmit={this.onSubmit} className="input-group m-2 border p-2">
           <div className="">
-            <span htmlFor="">New avatar:</span>
-            <input name="newAvatar" type="file" ref={this.fileInput} />
+            <span htmlFor="" className="card-text">
+              New avatar:
+            </span>
+            <input
+              name="newAvatar"
+              type="file"
+              ref={this.fileInput}
+              className="form-control"
+            />
           </div>
-          <button type="submit" className="">
+          <button type="submit" className="btn btn-dark mr-auto ml-2 mb-2">
             Update avatar
           </button>
         </form>

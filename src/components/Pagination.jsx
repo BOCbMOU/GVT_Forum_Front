@@ -12,39 +12,49 @@ const Pagination = ({ link, page = 0, numberOfPages = 1 }) => {
     const number = i + 1;
     pagination[i] =
       +page === number ? (
-        <Link
-          key={i}
-          className="disabled-link"
-          to={`${link}/page_${number}`}
-          onClick={scrollOnClick}
-        >
-          {number}
-        </Link>
+        <li className="page-link">
+          <Link
+            key={i}
+            className="disabled-link"
+            to={`${link}/page_${number}`}
+            onClick={scrollOnClick}
+          >
+            {number}
+          </Link>
+        </li>
       ) : (
-        <Link key={i} to={`${link}/page_${number}`} onClick={scrollOnClick}>
-          {number}
-        </Link>
+        <li className="page-link">
+          <Link key={i} to={`${link}/page_${number}`} onClick={scrollOnClick}>
+            {number}
+          </Link>
+        </li>
       );
   }
 
   return (
-    <div className="pagination">
-      <Link
-        className={+page <= 1 ? 'disabled-link' : ''}
-        to={`${link}/page_${page - 1}`}
-        onClick={scrollOnClick}
-      >
-        Prev
-      </Link>
-      {pagination}
-      <Link
-        className={+page >= numberOfPages ? 'disabled-link' : ''}
-        to={`${link}/page_${+page + 1}`}
-        onClick={scrollOnClick}
-      >
-        Next
-      </Link>
-    </div>
+    <nav className="ml-auto mr-2">
+      <ul className="pagination">
+        <li className={`page-item ${+page <= 1 ? 'disabled' : ''}`}>
+          <Link
+            className="page-link"
+            to={`${link}/page_${page - 1}`}
+            onClick={scrollOnClick}
+          >
+            Prev
+          </Link>
+        </li>
+        {pagination}
+        <li className={`page-item ${+page >= numberOfPages ? 'disabled' : ''}`}>
+          <Link
+            className="page-link"
+            to={`${link}/page_${+page + 1}`}
+            onClick={scrollOnClick}
+          >
+            Next
+          </Link>
+        </li>
+      </ul>
+    </nav>
   );
 };
 

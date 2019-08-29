@@ -19,7 +19,7 @@ const getUserByName = ({ token = '' }, username) => dispatch => {
       dispatch(
         error({
           title: 'Get user info failed!',
-          message: err,
+          message: err.response.status,
           position: 'tr',
         })
       );

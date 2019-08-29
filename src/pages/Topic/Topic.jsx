@@ -37,8 +37,8 @@ class Topic extends Component {
     }
 
     return (
-      <div className="topic">
-        <h2>{topic.title}</h2>
+      <div className="card">
+        <h2 className="card-header">{topic.title}</h2>
         <Comments topicId={topic._id} page={this.state.page} />
       </div>
     );

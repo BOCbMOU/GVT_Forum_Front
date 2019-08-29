@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Navigation from '../Navigation';
 import SignIn from '../../pages/SignIn';
 import SignUp from '../../pages/SignUp';
@@ -24,7 +25,10 @@ const App = ({ user, signOut }) => {
           <Route path="/" exact component={Home} />
           <Route path="/categories" exact component={Home} />
           <Route path="/category/:categoryId/page_:page" component={Category} />
-          <PrivateRoute path="/category/:categoryId/add_topic" component={AddTopic} />
+          <PrivateRoute
+            path="/category/:categoryId/add_topic"
+            component={AddTopic}
+          />
           <Route path="/topic/:topicId/page_:page" component={Topic} />
           <Route path="/user/:username" component={User} />
           <PrivateRoute path="/settings" component={Settings} />

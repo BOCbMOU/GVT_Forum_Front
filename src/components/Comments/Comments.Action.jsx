@@ -25,7 +25,7 @@ const addComment = (
       dispatch(
         error({
           title: 'Add comment failed!',
-          message: err,
+          message: err.response.status,
           position: 'tr',
         })
       );
@@ -50,7 +50,7 @@ const getCommentsByTopicId = ({ token = '' }, topicId, page) => dispatch => {
       dispatch(
         error({
           title: 'Get topic comments failed!',
-          message: err,
+          message: err.response.status,
           position: 'tr',
         })
       );
