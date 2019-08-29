@@ -52,6 +52,7 @@ class Category extends Component {
       <div className="category">
         <h2>{category.name}</h2>
         <span>{category.description}</span>
+        <Link to={`/category/${category._id}/add_topic`}>New Topic</Link>
         <ul className="category-children">
           {children.map(category => (
             <li key={category._id}>
@@ -63,6 +64,7 @@ class Category extends Component {
           ))}
         </ul>
         <ul className="category-topics">
+          {/* TODO: create separate topics component */}
           {topics.map(topic => (
             <li key={topic._id}>
               <Link to={`/topic/${topic._id}/page_1`}>

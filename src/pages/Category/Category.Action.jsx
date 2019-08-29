@@ -7,7 +7,7 @@ const getCategoryById = ({ token = '' }, categoryId) => dispatch => {
       headers: { authorization: `Bearer ${token}` },
     })
     .then(response => {
-      if (response && response.status === 200) {
+      if (response.status === 200) {
         const { payload } = response.data;
         dispatch({
           type: 'GET_CATEGORY_BY_ID',
@@ -19,8 +19,8 @@ const getCategoryById = ({ token = '' }, categoryId) => dispatch => {
       dispatch(
         error({
           title: 'Get category by id failed!',
-          message: err.response.error,
-          position: 'tc',
+          message: err,
+          position: 'tr',
         })
       );
     });
@@ -32,7 +32,7 @@ const getCategoryChildren = ({ token = '' }, categoryId) => dispatch => {
       headers: { authorization: `Bearer ${token}` },
     })
     .then(response => {
-      if (response && response.status === 200) {
+      if (response.status === 200) {
         const { payload } = response.data;
         dispatch({
           type: 'GET_CATEGORY_CHILDREN',
@@ -44,8 +44,8 @@ const getCategoryChildren = ({ token = '' }, categoryId) => dispatch => {
       dispatch(
         error({
           title: 'Get category children failed!',
-          message: err.response.error,
-          position: 'tc',
+          message: err,
+          position: 'tr',
         })
       );
     });
@@ -57,7 +57,7 @@ const getCategoryTopics = ({ token = '' }, categoryId, page) => dispatch => {
       headers: { authorization: `Bearer ${token}` },
     })
     .then(response => {
-      if (response && response.status === 200) {
+      if (response.status === 200) {
         const { payload } = response.data;
         dispatch({
           type: 'GET_CATEGORY_TOPICS',
@@ -69,8 +69,8 @@ const getCategoryTopics = ({ token = '' }, categoryId, page) => dispatch => {
       dispatch(
         error({
           title: 'Get category topics failed!',
-          message: err.response.error,
-          position: 'tc',
+          message: err,
+          position: 'tr',
         })
       );
     });

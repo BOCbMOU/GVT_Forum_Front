@@ -8,6 +8,8 @@ const topic = (
       return action.payload;
     case 'RESET_TOPIC':
       return null;
+    case 'ADD_TOPIC':
+      return action.payload;
     default:
       return state;
   }

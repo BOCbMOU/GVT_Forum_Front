@@ -1,20 +1,20 @@
-import axios from "axios";
-import { success, error } from "react-notification-system-redux";
+import axios from 'axios';
+import { success, error } from 'react-notification-system-redux';
 
 const signUpUser = user => dispatch => {
   axios
-    .post("auth/sign-up", { user })
+    .post('auth/sign-up', { user })
     .then(response => {
-      if (response && response.status === 201) {
+      if (response.status === 201) {
         dispatch({
-          type: "SIGN_UP_SUCCESS"
+          type: 'SIGN_UP_SUCCESS',
         });
         dispatch(
           success({
-            title: "Sign Up success",
-            message: "Check your email to confirm your user status!",
-            position: "tr",
-            autoDismiss: 5
+            title: 'Sign Up success',
+            message: 'Check your email to confirm your user status!',
+            position: 'tr',
+            autoDismiss: 5,
           })
         );
       }
@@ -22,9 +22,9 @@ const signUpUser = user => dispatch => {
     .catch(err => {
       dispatch(
         error({
-          title: "Sign Up failed",
+          title: 'Sign Up failed',
           message: err.response.data.error,
-          position: "tc"
+          position: 'tr',
         })
       );
     });

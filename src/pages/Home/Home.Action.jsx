@@ -7,7 +7,7 @@ const getTopCategories = ({ token = '' }) => dispatch => {
       headers: { authorization: `Bearer ${token}` },
     })
     .then(response => {
-      if (response && response.status === 200) {
+      if (response.status === 200) {
         const { payload } = response.data;
         dispatch({
           type: 'GET_CATEGORIES',
@@ -19,8 +19,8 @@ const getTopCategories = ({ token = '' }) => dispatch => {
       dispatch(
         error({
           title: 'Get top categories failed!',
-          message: err.response.error,
-          position: 'tc',
+          message: err,
+          position: 'tr',
         })
       );
     });

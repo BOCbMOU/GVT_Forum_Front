@@ -6,9 +6,11 @@ import SignUp from '../../pages/SignUp';
 import Home from '../../pages/Home';
 import Category from '../../pages/Category';
 import Topic from '../../pages/Topic';
+import AddTopic from '../../pages/AddTopic';
 import User from '../../pages/User';
+import Settings from '../../pages/Settings';
 import NotificationSystem from '../NotificationComponent';
-// import PrivateRoute from "../PrivateRoute";
+import PrivateRoute from '../PrivateRoute';
 
 const App = ({ user, signOut }) => {
   return (
@@ -22,8 +24,10 @@ const App = ({ user, signOut }) => {
           <Route path="/" exact component={Home} />
           <Route path="/categories" exact component={Home} />
           <Route path="/category/:categoryId/page_:page" component={Category} />
+          <PrivateRoute path="/category/:categoryId/add_topic" component={AddTopic} />
           <Route path="/topic/:topicId/page_:page" component={Topic} />
           <Route path="/user/:username" component={User} />
+          <PrivateRoute path="/settings" component={Settings} />
         </Switch>
       </Router>
       <NotificationSystem />

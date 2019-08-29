@@ -11,21 +11,19 @@ const AddComment = ({ user, topicId, addComment }) => {
 
   const onSubmit = event => {
     event.preventDefault();
-    addComment(user, topicId, message);
+    addComment(user, { topicId, message });
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <div className="">
-          <h4 htmlFor="">Add comment</h4>
-          <textarea name="message" onChange={onMessageChange} className="" />
-        </div>
-        <button type="submit" className="">
-          Add Comment
-        </button>
-      </form>
-    </div>
+    <form onSubmit={onSubmit}>
+      <div className="">
+        <h4 htmlFor="">Add comment</h4>
+        <textarea name="message" onChange={onMessageChange} className="" />
+      </div>
+      <button type="submit" className="">
+        Add Comment
+      </button>
+    </form>
   );
 };
 

@@ -51,11 +51,15 @@ class Comments extends Component {
           page={this.props.page}
           numberOfPages={numberOfPages}
         />
-        <AddComment
-          user={this.props.user}
-          topicId={this.props.topicId}
-          addComment={this.props.addComment}
-        />
+        {this.props.user.token ? (
+          <AddComment
+            user={this.props.user}
+            topicId={this.props.topicId}
+            addComment={this.props.addComment}
+          />
+        ) : (
+          <div>Sign In to leave comment</div>
+        )}
       </Fragment>
     );
   }

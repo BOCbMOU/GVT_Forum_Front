@@ -6,7 +6,7 @@ const signInUser = user => dispatch => {
   axios
     .post('auth/sign-in', user)
     .then(response => {
-      if (response && response.status === 200) {
+      if (response.status === 200) {
         const { user } = response.data.payload;
         localStorage.setItem('token', user.token);
         localStorage.setItem(

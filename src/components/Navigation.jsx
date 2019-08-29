@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navigation = ({ user, signOut }) => {
   const isToken = Boolean(user.token);
@@ -25,11 +25,18 @@ const Navigation = ({ user, signOut }) => {
             </li>
           </Fragment>
         ) : (
-          <li>
-            <Link to="/" className="" onClick={signOut}>
-              Sign Out
-            </Link>
-          </li>
+          <Fragment>
+            <li>
+              <Link to="/settings" className="">
+                Settings
+              </Link>
+            </li>
+            <li>
+              <Link to="/" className="" onClick={signOut}>
+                Sign Out
+              </Link>
+            </li>
+          </Fragment>
         )}
       </ul>
     </nav>

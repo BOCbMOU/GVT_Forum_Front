@@ -34,13 +34,14 @@ axios.interceptors.response.use(
       error({
         title,
         message,
-        position: 'tc',
+        position: 'tr',
         autoDismiss: 5,
       })
     );
   }
 );
 
+// TODO: normal save-load settings
 const token = localStorage.getItem('token');
 const pageSize = +localStorage.getItem('pageSize') || DEFAULT_PAGE_SIZE;
 

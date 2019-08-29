@@ -7,7 +7,7 @@ const getUserByName = ({ token = '' }, username) => dispatch => {
       headers: { authorization: `Bearer ${token}` },
     })
     .then(response => {
-      if (response && response.status === 200) {
+      if (response.status === 200) {
         const { payload } = response.data;
         dispatch({
           type: 'GET_USER_INFO',
@@ -19,8 +19,8 @@ const getUserByName = ({ token = '' }, username) => dispatch => {
       dispatch(
         error({
           title: 'Get user info failed!',
-          message: err.response.error,
-          position: 'tc',
+          message: err,
+          position: 'tr',
         })
       );
     });

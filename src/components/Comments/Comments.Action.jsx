@@ -4,9 +4,7 @@ import { DEFAULT_VIEW_CONTENT_AL } from '../../consts';
 
 const addComment = (
   { token = '' },
-  topicId,
-  message,
-  accessLevel = DEFAULT_VIEW_CONTENT_AL
+  { topicId, message, accessLevel = DEFAULT_VIEW_CONTENT_AL }
 ) => dispatch => {
   axios
     .post(
@@ -15,7 +13,7 @@ const addComment = (
       { headers: { authorization: `Bearer ${token}` } }
     )
     .then(response => {
-      if (response && response.status === 201) {
+      if (response.status === 201) {
         const { comment } = response.data.payload;
         dispatch({
           type: 'ADD_COMMENT',
@@ -27,8 +25,8 @@ const addComment = (
       dispatch(
         error({
           title: 'Add comment failed!',
-          message: err.response.error,
-          position: 'tc',
+          message: err,
+          position: 'tr',
         })
       );
     });
@@ -40,7 +38,7 @@ const getCommentsByTopicId = ({ token = '' }, topicId, page) => dispatch => {
       headers: { authorization: `Bearer ${token}` },
     })
     .then(response => {
-      if (response && response.status === 200) {
+      if (response.status === 200) {
         const { comments, numberOfPages } = response.data.payload;
         dispatch({
           type: 'GET_COMMENTS_BY_TOPIC_ID',
@@ -52,8 +50,8 @@ const getCommentsByTopicId = ({ token = '' }, topicId, page) => dispatch => {
       dispatch(
         error({
           title: 'Get topic comments failed!',
-          message: err.response.error,
-          position: 'tc',
+          message: err,
+          position: 'tr',
         })
       );
     });
