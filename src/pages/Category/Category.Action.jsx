@@ -61,7 +61,7 @@ const getCategoryTopics = ({ token = '' }, categoryId, page) => dispatch => {
         const { payload } = response.data;
         dispatch({
           type: 'GET_CATEGORY_TOPICS',
-          payload: payload.topics,
+          payload,
         });
       }
     })
@@ -82,9 +82,16 @@ const resetCategory = () => dispatch => {
   });
 };
 
+const resetTopics = () => dispatch => {
+  dispatch({
+    type: 'RESET_TOPICS',
+  });
+};
+
 export {
   getCategoryById,
   getCategoryChildren,
   getCategoryTopics,
   resetCategory,
+  resetTopics,
 };

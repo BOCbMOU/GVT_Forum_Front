@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Pagination from '../../components/Pagination';
 import Spinner from '../../components/Spinner';
 
 class Category extends Component {
@@ -28,6 +29,7 @@ class Category extends Component {
       };
     }
     if (page !== state.page) {
+      newProps.resetTopics();
       newProps.getCategoryTopics(newProps.user, categoryId, page);
       return {
         page,
@@ -40,18 +42,8 @@ class Category extends Component {
     this.props.resetCategory();
   }
 
-  //   onLinkClick = () => {
-  //     this.props.resetCategory();
-  //     setTimeout(() => {
-  //       const { categoryId, page } = this.props.match.params;
-  //       this.props.getCategoryById(this.props.user, categoryId);
-  //       this.props.getCategoryChildren(this.props.user, categoryId);
-  //       this.props.getCategoryTopics(this.props.user, categoryId, page);
-  //     }, 0);
-  //   };
-
   render() {
-    const { value: category, children, topics } = this.props.category;
+    const { value: category, children, topics, numberOf } = this.props.category;
     if (!(category && children && topics)) {
       return <Spinner color="#00BFFF" />;
     }
@@ -80,6 +72,12 @@ class Category extends Component {
             </li>
           ))}
         </ul>
+        <Pagination
+          link={`/category/${category._id}`}
+          page={this.state.page}
+          numberOf={numberOf}
+          pageSize={this.props.user.settings.pageSize}
+        />
       </div>
     );
   }

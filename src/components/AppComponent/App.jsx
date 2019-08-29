@@ -6,6 +6,7 @@ import SignUp from '../../pages/SignUp';
 import Home from '../../pages/Home';
 import Category from '../../pages/Category';
 import Topic from '../../pages/Topic';
+import User from '../../pages/User';
 import NotificationSystem from '../NotificationComponent';
 // import PrivateRoute from "../PrivateRoute";
 
@@ -22,6 +23,7 @@ const App = ({ user, signOut }) => {
           <Route path="/categories" exact component={Home} />
           <Route path="/category/:categoryId/page_:page" component={Category} />
           <Route path="/topic/:topicId/page_:page" component={Topic} />
+          <Route path="/user/:username" component={User} />
         </Switch>
       </Router>
       <NotificationSystem />

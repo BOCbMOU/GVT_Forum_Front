@@ -1,24 +1,24 @@
 import axios from 'axios';
 import { error } from 'react-notification-system-redux';
 
-const getTopicById = ({ token = '' }, topicId) => dispatch => {
+const getUserByName = ({ token = '' }, username) => dispatch => {
   axios
-    .get(`topics/${topicId}`, {
+    .get(`users/${username}`, {
       headers: { authorization: `Bearer ${token}` },
     })
     .then(response => {
       if (response && response.status === 200) {
         const { payload } = response.data;
         dispatch({
-          type: 'GET_TOPIC_BY_ID',
-          payload: payload.topic,
+          type: 'GET_USER_INFO',
+          payload: payload.user,
         });
       }
     })
     .catch(err => {
       dispatch(
         error({
-          title: 'Get topic by id failed!',
+          title: 'Get user info failed!',
           message: err.response.error,
           position: 'tc',
         })
@@ -26,10 +26,10 @@ const getTopicById = ({ token = '' }, topicId) => dispatch => {
     });
 };
 
-const resetTopic = () => dispatch => {
+const resetUser = () => dispatch => {
   dispatch({
-    type: 'RESET_TOPIC',
+    type: 'RESET_USER_INFO',
   });
 };
 
-export { getTopicById, resetTopic };
+export { getUserByName, resetUser };

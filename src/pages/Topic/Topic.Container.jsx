@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getTopicById, getTopicComments, resetTopic } from './Topic.Action';
+import { getTopicById, resetTopic } from './Topic.Action';
 import Topic from './Topic';
 
 const stateToProps = state => ({
@@ -9,5 +9,5 @@ const stateToProps = state => ({
 
 export default connect(
   stateToProps,
-  { getTopicById, getTopicComments, resetTopic }
+  { getTopicById, resetTopic }
 )(Topic);
