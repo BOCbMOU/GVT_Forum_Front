@@ -1,9 +1,10 @@
-import { applyMiddleware, createStore } from "redux";
-import thunk from "redux-thunk";
-import { composeWithDevTools } from "redux-devtools-extension";
-import rootReducer from "./reducers/";
-import axios from "axios";
-import { error as errorNotification } from "react-notification-system-redux";
+import { applyMiddleware, createStore } from 'redux';
+import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import axios from 'axios';
+import { error } from 'react-notification-system-redux';
+import rootReducer from './reducers/';
+import { DEFAULT_PAGE_SIZE } from '../consts';
 
 const store = createStore(
   rootReducer,
@@ -11,40 +12,42 @@ const store = createStore(
 );
 
 // set server address
-axios.defaults.baseURL = "http://localhost:3001/api/v1/";
+axios.defaults.baseURL = 'http://localhost:3001/api/v1/';
 
 axios.interceptors.response.use(
   response => response,
-  error => {
-    let message = error.response.status,
-      title = "Something went wrong";
+  err => {
+    let message = err.response.status,
+      title = 'Something went wrong';
 
-    if (error.response.status === 401) {
-      localStorage.removeItem("user");
+    if (err.response.status === 401) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('pageSize');
       store.dispatch({
-        type: "SIGN_OUT"
+        type: 'SIGN_OUT',
       });
-      message = error.response.data.error;
-      title = "Token expired";
+      message = err.response.data.error;
+      title = 'Token expired';
     }
 
     store.dispatch(
-      errorNotification({
+      error({
         title,
         message,
-        position: "tc",
-        autoDismiss: 5
+        position: 'tc',
+        autoDismiss: 5,
       })
     );
   }
 );
 
-const token = localStorage.getItem("token");
+const token = localStorage.getItem('token');
+const pageSize = +localStorage.getItem('pageSize') || DEFAULT_PAGE_SIZE;
 
 if (token) {
   store.dispatch({
-    type: "SIGN_IN_SUCCESS",
-    payload: { token }
+    type: 'SIGN_IN_SUCCESS',
+    payload: { token, settings: { pageSize } },
   });
 }
 

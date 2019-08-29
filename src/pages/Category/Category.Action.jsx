@@ -1,76 +1,76 @@
-import axios from "axios";
-import { error } from "react-notification-system-redux";
+import axios from 'axios';
+import { error } from 'react-notification-system-redux';
 
-const getCategoryById = ({ token }, categoryId) => dispatch => {
+const getCategoryById = ({ token = '' }, categoryId) => dispatch => {
   axios
     .get(`categories/${categoryId}`, {
-      headers: { authorization: `Bearer ${token}` }
+      headers: { authorization: `Bearer ${token}` },
     })
     .then(response => {
       if (response && response.status === 200) {
         const { payload } = response.data;
         dispatch({
-          type: "GET_CATEGORY_BY_ID",
-          payload: payload.category
+          type: 'GET_CATEGORY_BY_ID',
+          payload: payload.category,
         });
       }
     })
     .catch(err => {
       dispatch(
         error({
-          title: "Get category by id failed!",
+          title: 'Get category by id failed!',
           message: err.response.error,
-          position: "tc"
+          position: 'tc',
         })
       );
     });
 };
 
-const getCategoryChildren = ({ token }, categoryId) => dispatch => {
+const getCategoryChildren = ({ token = '' }, categoryId) => dispatch => {
   axios
     .get(`categories/${categoryId}/children`, {
-      headers: { authorization: `Bearer ${token}` }
+      headers: { authorization: `Bearer ${token}` },
     })
     .then(response => {
       if (response && response.status === 200) {
         const { payload } = response.data;
         dispatch({
-          type: "GET_CATEGORY_CHILDREN",
-          payload: payload.categories
+          type: 'GET_CATEGORY_CHILDREN',
+          payload: payload.categories,
         });
       }
     })
     .catch(err => {
       dispatch(
         error({
-          title: "Get category children failed!",
+          title: 'Get category children failed!',
           message: err.response.error,
-          position: "tc"
+          position: 'tc',
         })
       );
     });
 };
 
-const getCategoryTopics = ({ token }, categoryId, page) => dispatch => {
+const getCategoryTopics = ({ token = '' }, categoryId, page) => dispatch => {
   axios
     .get(`categories/${categoryId}/topics/page_${page}`, {
-      headers: { authorization: `Bearer ${token}` }
+      headers: { authorization: `Bearer ${token}` },
     })
     .then(response => {
       if (response && response.status === 200) {
         const { payload } = response.data;
         dispatch({
-          type: "GET_CATEGORY_TOPICS",
-          payload: payload.topics
+          type: 'GET_CATEGORY_TOPICS',
+          payload: payload.topics,
         });
       }
     })
     .catch(err => {
       dispatch(
         error({
-          title: "Get category topics failed!",
+          title: 'Get category topics failed!',
           message: err.response.error,
-          position: "tc"
+          position: 'tc',
         })
       );
     });
@@ -78,7 +78,7 @@ const getCategoryTopics = ({ token }, categoryId, page) => dispatch => {
 
 const resetCategory = () => dispatch => {
   dispatch({
-    type: "RESET_CATEGORY"
+    type: 'RESET_CATEGORY',
   });
 };
 
@@ -86,5 +86,5 @@ export {
   getCategoryById,
   getCategoryChildren,
   getCategoryTopics,
-  resetCategory
+  resetCategory,
 };

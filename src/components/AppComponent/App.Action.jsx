@@ -1,7 +1,8 @@
 const signOut = () => dispatch => {
-  localStorage.removeItem("token");
+  localStorage.removeItem('token');
+  localStorage.removeItem('pageSize');
   dispatch({
-    type: "SIGN_OUT"
+    type: 'SIGN_OUT',
   });
 };
 

@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 export class SignIn extends Component {
   state = {
-    email: "",
-    password: ""
+    email: '',
+    password: '',
   };
 
   onChange = event => {
@@ -17,7 +17,7 @@ export class SignIn extends Component {
     // eslint-disable-next-line
     for (const key in this.state) {
       if (this.state[key].length < 1) {
-        console.log("All fields required");
+        console.log('All fields required');
         return false;
       }
     }

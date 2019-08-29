@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import Pagination from '../../components/Pagination';
 import Spinner from '../../components/Spinner';
 
 class Topic extends Component {
+  topicDiv = React.createRef();
   state = {
     topicId: this.props.match.params.topicId,
     page: this.props.match.params.page,
@@ -18,15 +20,15 @@ class Topic extends Component {
     const { topicId, page } = newProps.match.params;
     if (topicId !== state.topicId) {
       newProps.resetTopic();
-      this.props.getTopicById(this.props.user, topicId);
-      this.props.getTopicComments(this.props.user, topicId, page);
+      newProps.getTopicById(newProps.user, topicId);
+      newProps.getTopicComments(newProps.user, topicId, page);
       return {
         topicId,
         page,
       };
     }
     if (page !== state.page) {
-      this.props.getTopicComments(this.props.user, topicId, page);
+      newProps.getTopicComments(newProps.user, topicId, page);
       return {
         page,
       };
@@ -38,14 +40,21 @@ class Topic extends Component {
     this.props.resetTopic();
   }
 
+  // handleScroll = () => {
+  //   const { index, selected } = this.props;
+  //   if (index === selected) {
+  //     this.topicDiv.current.scrollIntoView({ behavior: 'smooth' });
+  //   }
+  // };
+
   render() {
-    const { value: topic, comments } = this.props.topic;
+    const { value: topic, comments, numberOf } = this.props.topic;
     if (!(topic && comments)) {
       return <Spinner color="#00BFFF" />;
     }
 
     return (
-      <div className="topic">
+      <div className="topic" ref={this.topicDiv}>
         <h2>{topic.title}</h2>
         <ul className="topic-comments">
           {comments.map(comment => (
@@ -56,6 +65,13 @@ class Topic extends Component {
             </li>
           ))}
         </ul>
+        <Pagination
+          link={`/topic/${topic._id}`}
+          page={this.state.page}
+          numberOfPages={Math.ceil(
+            numberOf / this.props.user.settings.pageSize
+          )}
+        />
       </div>
     );
   }

@@ -1,26 +1,26 @@
-import axios from "axios";
-import { error } from "react-notification-system-redux";
+import axios from 'axios';
+import { error } from 'react-notification-system-redux';
 
-const getTopCategories = ({ token }) => dispatch => {
+const getTopCategories = ({ token = '' }) => dispatch => {
   axios
     .get(`categories/`, {
-      headers: { authorization: `Bearer ${token}` }
+      headers: { authorization: `Bearer ${token}` },
     })
     .then(response => {
       if (response && response.status === 200) {
         const { payload } = response.data;
         dispatch({
-          type: "GET_CATEGORIES",
-          payload: payload.categories
+          type: 'GET_CATEGORIES',
+          payload: payload.categories,
         });
       }
     })
     .catch(err => {
       dispatch(
         error({
-          title: "Get top categories failed!",
+          title: 'Get top categories failed!',
           message: err.response.error,
-          position: "tc"
+          position: 'tc',
         })
       );
     });

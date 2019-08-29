@@ -1,51 +1,51 @@
-import axios from "axios";
-import { error } from "react-notification-system-redux";
+import axios from 'axios';
+import { error } from 'react-notification-system-redux';
 
-const getTopicById = ({ token }, topicId) => dispatch => {
+const getTopicById = ({ token = '' }, topicId) => dispatch => {
   axios
     .get(`topics/${topicId}`, {
-      headers: { authorization: `Bearer ${token}` }
+      headers: { authorization: `Bearer ${token}` },
     })
     .then(response => {
       if (response && response.status === 200) {
         const { payload } = response.data;
         dispatch({
-          type: "GET_TOPIC_BY_ID",
-          payload: payload.topic
+          type: 'GET_TOPIC_BY_ID',
+          payload: payload.topic,
         });
       }
     })
     .catch(err => {
       dispatch(
         error({
-          title: "Get topic by id failed!",
+          title: 'Get topic by id failed!',
           message: err.response.error,
-          position: "tc"
+          position: 'tc',
         })
       );
     });
 };
 
-const getTopicComments = ({ token }, topicId, page) => dispatch => {
+const getTopicComments = ({ token = '' }, topicId, page) => dispatch => {
   axios
     .get(`topics/${topicId}/comments/page_${page}`, {
-      headers: { authorization: `Bearer ${token}` }
+      headers: { authorization: `Bearer ${token}` },
     })
     .then(response => {
       if (response && response.status === 200) {
         const { payload } = response.data;
         dispatch({
-          type: "GET_TOPIC_COMMENTS",
-          payload: payload.comments
+          type: 'GET_TOPIC_COMMENTS',
+          payload,
         });
       }
     })
     .catch(err => {
       dispatch(
         error({
-          title: "Get topic comments failed!",
+          title: 'Get topic comments failed!',
           message: err.response.error,
-          position: "tc"
+          position: 'tc',
         })
       );
     });
@@ -53,7 +53,7 @@ const getTopicComments = ({ token }, topicId, page) => dispatch => {
 
 const resetTopic = () => dispatch => {
   dispatch({
-    type: "RESET_TOPIC"
+    type: 'RESET_TOPIC',
   });
 };
 
