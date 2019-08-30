@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import Spinner from '../../components/Spinner';
 
@@ -15,6 +15,13 @@ class Home extends Component {
 
     return (
       <div className="top-categories-div">
+        {this.props.user.token ? (
+          <Fragment>
+            <Link to={`/category/add_category`} className="btn btn-dark m-2">
+              New Category
+            </Link>
+          </Fragment>
+        ) : null}
         <ul className="top-categories-ul">
           {categories.map(category => (
             <li key={category._id} className="card">

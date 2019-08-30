@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AddComment from './AddComment';
+import UpdateComment from './UpdateComment';
 import Pagination from '../../components/Pagination';
 import Spinner from '../../components/Spinner';
 
@@ -8,6 +9,7 @@ class Comments extends Component {
   state = {
     topicId: this.props.topicId,
     page: this.props.page,
+    updateCommentId: null,
   };
 
   componentDidMount() {
@@ -29,22 +31,56 @@ class Comments extends Component {
     this.props.resetComments();
   }
 
+  onEditClick = event => {
+    event.preventDefault();
+    this.setState({ updateCommentId: event.target.name });
+  };
+
+  resetUpdateComment = () => {
+    this.setState({ updateCommentId: null });
+  };
+
   render() {
     const { value: comments, numberOfPages } = this.props.comments;
     if (!comments) {
       return <Spinner color="#00BFFF" />;
     }
 
+    // TODO: show edit link only for self comments
     return (
       <Fragment>
         <ul className="topic-comments">
-          {comments.map(comment => (
-            <li key={comment._id} className="card p-2">
-              <h4 className="card-header">{comment.username}</h4>
-              <span className="card-title">{comment.createdAt}</span>
-              <div className="card-text">{comment.message}</div>
-            </li>
-          ))}
+          {comments.map(comment =>
+            this.state.updateCommentId &&
+            this.state.updateCommentId === comment._id ? (
+              <li key={comment._id} className="card p-2">
+                <UpdateComment
+                  user={this.props.user}
+                  oldMessage={comment.message}
+                  commentId={comment._id}
+                  updateComment={this.props.updateComment}
+                  resetUpdateComment={this.resetUpdateComment}
+                />
+              </li>
+            ) : (
+              <li key={comment._id} className="card p-2">
+                <h4 className="card-header">
+                  <Link to={`/user/${comment.username}`} className="mr-5">
+                    {comment.username}
+                  </Link>
+                  <button
+                    name={comment._id}
+                    onClick={this.onEditClick}
+                    className="badge badge-primary text-nowrap font-italic"
+                  >
+                    edit
+                  </button>
+                </h4>
+                <span className="card-title">{comment.createdAt}</span>
+                <div className="card-text">{comment.message}</div>
+              </li>
+            )
+          )}
         </ul>
         <Pagination
           link={`/topic/${this.props.topicId}`}

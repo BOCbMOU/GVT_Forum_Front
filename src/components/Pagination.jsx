@@ -12,9 +12,8 @@ const Pagination = ({ link, page = 0, numberOfPages = 1 }) => {
     const number = i + 1;
     pagination[i] =
       +page === number ? (
-        <li className="page-link">
+        <li key={i} className="page-link">
           <Link
-            key={i}
             className="disabled-link"
             to={`${link}/page_${number}`}
             onClick={scrollOnClick}
@@ -23,8 +22,8 @@ const Pagination = ({ link, page = 0, numberOfPages = 1 }) => {
           </Link>
         </li>
       ) : (
-        <li className="page-link">
-          <Link key={i} to={`${link}/page_${number}`} onClick={scrollOnClick}>
+        <li key={i} className="page-link">
+          <Link to={`${link}/page_${number}`} onClick={scrollOnClick}>
             {number}
           </Link>
         </li>
@@ -34,7 +33,7 @@ const Pagination = ({ link, page = 0, numberOfPages = 1 }) => {
   return (
     <nav className="ml-auto mr-2">
       <ul className="pagination">
-        <li className={`page-item ${+page <= 1 ? 'disabled' : ''}`}>
+        <li key="prev" className={`page-item ${+page <= 1 ? 'disabled' : ''}`}>
           <Link
             className="page-link"
             to={`${link}/page_${page - 1}`}
@@ -44,7 +43,10 @@ const Pagination = ({ link, page = 0, numberOfPages = 1 }) => {
           </Link>
         </li>
         {pagination}
-        <li className={`page-item ${+page >= numberOfPages ? 'disabled' : ''}`}>
+        <li
+          key="next"
+          className={`page-item ${+page >= numberOfPages ? 'disabled' : ''}`}
+        >
           <Link
             className="page-link"
             to={`${link}/page_${+page + 1}`}

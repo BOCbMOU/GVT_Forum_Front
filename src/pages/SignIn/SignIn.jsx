@@ -31,26 +31,30 @@ export class SignIn extends Component {
     }
 
     return (
-      <form onSubmit={this.onSubmit} className="">
+      <form onSubmit={this.onSubmit} className="card">
         <div>
-          <label htmlFor="">Email</label>
+          <label htmlFor="" className="input-group-text m-2">
+            Email
+          </label>
           <input
             type="email"
             name="email"
-            className=""
+            className="form-control m-2"
             onChange={this.onChange}
           />
         </div>
         <div>
-          <label htmlFor="">Password</label>
+          <label htmlFor="" className="input-group-text m-2">
+            Password
+          </label>
           <input
             type="password"
             name="password"
-            className=""
+            className="form-control m-2"
             onChange={this.onChange}
           />
         </div>
-        <button type="submit" className="">
+        <button type="submit" className="btn btn-dark mr-auto ml-2 mb-2">
           Sign In
         </button>
       </form>

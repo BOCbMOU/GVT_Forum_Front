@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 class SignUp extends Component {
   state = {
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: ""
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
   };
 
   onChange = event => {
@@ -19,7 +19,7 @@ class SignUp extends Component {
     // eslint-disable-next-line
     for (const key in this.state) {
       if (this.state[key].length < 1) {
-        console.log("All fields required");
+        console.log('All fields required');
         return false;
       }
     }
@@ -34,44 +34,52 @@ class SignUp extends Component {
     }
 
     return (
-      <form onSubmit={this.onSubmit} className="">
-        <div className="">
-          <label htmlFor="">Username</label>
+      <form onSubmit={this.onSubmit} className="card">
+        <div>
+          <label htmlFor="" className="input-group-text m-2">
+            Username
+          </label>
           <input
             type="text"
             name="username"
-            className=""
+            className="form-control m-2"
             onChange={this.onChange}
           />
         </div>
         <div>
-          <label htmlFor="">Email</label>
+          <label htmlFor="" className="input-group-text m-2">
+            Email
+          </label>
           <input
             type="email"
             name="email"
-            className=""
+            className="form-control m-2"
             onChange={this.onChange}
           />
         </div>
         <div>
-          <label htmlFor="">Password</label>
+          <label htmlFor="" className="input-group-text m-2">
+            Password
+          </label>
           <input
             type="password"
             name="password"
-            className=""
+            className="form-control m-2"
             onChange={this.onChange}
           />
         </div>
         <div>
-          <label htmlFor="">Confirm password</label>
+          <label htmlFor="" className="input-group-text m-2">
+            Confirm password
+          </label>
           <input
             type="password"
             name="confirmPassword"
-            className=""
+            className="form-control m-2"
             onChange={this.onChange}
           />
         </div>
-        <button type="submit" className="">
+        <button type="submit" className="btn btn-dark mr-auto ml-2 mb-2">
           Sign Up
         </button>
       </form>

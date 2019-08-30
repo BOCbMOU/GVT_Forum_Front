@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import {
   addComment,
+  updateComment,
   getCommentsByTopicId,
   resetComments,
 } from './Comments.Action';
@@ -13,5 +14,5 @@ const stateToProps = state => ({
 
 export default connect(
   stateToProps,
-  { addComment, getCommentsByTopicId, resetComments }
+  { addComment, updateComment, getCommentsByTopicId, resetComments }
 )(Comments);

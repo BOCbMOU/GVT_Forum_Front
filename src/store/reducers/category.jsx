@@ -5,6 +5,7 @@ const category = (
 ) => {
   switch (action.type) {
     case 'GET_CATEGORY_BY_ID':
+    case 'ADD_CATEGORY':
       return { ...state, value: action.payload };
     case 'GET_CATEGORY_CHILDREN':
       return { ...state, children: action.payload };

@@ -32,13 +32,20 @@ export class Settings extends Component {
     if (!this.props.userInfo) {
       return <Spinner color="#00BFFF" />;
     }
-    const { username, email, avatar, accessLevel } = this.props.userInfo;
+    const {
+      username,
+      email,
+      avatar,
+      accessLevel,
+      updatedAt,
+    } = this.props.userInfo;
 
     return (
       <Fragment>
         <h2 className="card-header">{username}</h2>
         <span className="card-text">{email}</span>
         <p className="card-text">{accessLevel}</p>
+        <p className="card-text">{updatedAt}</p>
         {avatar ? (
           <img src={avatar} alt="avatar" className="rounded m-3" />
         ) : null}

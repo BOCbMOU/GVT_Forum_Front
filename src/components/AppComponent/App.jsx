@@ -6,6 +6,7 @@ import SignIn from '../../pages/SignIn';
 import SignUp from '../../pages/SignUp';
 import Home from '../../pages/Home';
 import Category from '../../pages/Category';
+import AddCategory from '../../pages/AddCategory';
 import Topic from '../../pages/Topic';
 import AddTopic from '../../pages/AddTopic';
 import User from '../../pages/User';
@@ -25,6 +26,11 @@ const App = ({ user, signOut }) => {
           <Route path="/" exact component={Home} />
           <Route path="/categories" exact component={Home} />
           <Route path="/category/:categoryId/page_:page" component={Category} />
+          <PrivateRoute
+            path="/category/:parentCategoryId/add_category"
+            component={AddCategory}
+          />
+          <PrivateRoute path="/category/add_category" component={AddCategory} />
           <PrivateRoute
             path="/category/:categoryId/add_topic"
             component={AddTopic}

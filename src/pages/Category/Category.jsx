@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import Pagination from '../../components/Pagination';
 import Spinner from '../../components/Spinner';
@@ -50,14 +50,34 @@ class Category extends Component {
 
     return (
       <div className="card">
+        <Link
+          to={
+            category.parentCategoryId
+              ? `/category/${category.parentCategoryId}/page_1`
+              : '/'
+          }
+          className="btn btn-dark mr-auto ml-2"
+        >
+          Parent category
+        </Link>
         <h2 className="card-header">{category.name}</h2>
         <span className="card-text ml-2">{category.description}</span>
-        <Link
-          to={`/category/${category._id}/add_topic`}
-          className="btn btn-dark ml-auto mr-2"
-        >
-          New Topic
-        </Link>
+        {this.props.user.token ? (
+          <Fragment>
+            <Link
+              to={`/category/${category._id}/add_category`}
+              className="btn btn-dark ml-auto mr-2"
+            >
+              New Category
+            </Link>
+            <Link
+              to={`/category/${category._id}/add_topic`}
+              className="btn btn-dark ml-auto mr-2"
+            >
+              New Topic
+            </Link>
+          </Fragment>
+        ) : null}
         <ul className="card-body pt-0 pb-0">
           <h5 className="card-header">Categories</h5>
           {children.map(category => (

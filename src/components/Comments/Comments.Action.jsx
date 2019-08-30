@@ -32,6 +32,34 @@ const addComment = (
     });
 };
 
+const updateComment = (
+  { token = '' },
+  { commentId, message, accessLevel = DEFAULT_VIEW_CONTENT_AL },
+  page = 1
+) => dispatch => {
+  axios
+    .put(
+      `topics/comment/${commentId}`,
+      { comment: { message, accessLevel } },
+      { headers: { authorization: `Bearer ${token}` } }
+    )
+    .then(response => {
+      if (response.status === 202) {
+        const { comment } = response.data.payload;
+        getCommentsByTopicId({ token }, comment.topicId, page);
+      }
+    })
+    .catch(err => {
+      dispatch(
+        error({
+          title: 'Update comment failed!',
+          message: err.response.status,
+          position: 'tr',
+        })
+      );
+    });
+};
+
 const getCommentsByTopicId = ({ token = '' }, topicId, page) => dispatch => {
   axios
     .get(`topics/${topicId}/comments/page_${page}`, {
@@ -63,4 +91,4 @@ const resetComments = () => dispatch => {
   });
 };
 
-export { addComment, getCommentsByTopicId, resetComments };
+export { addComment, updateComment, getCommentsByTopicId, resetComments };

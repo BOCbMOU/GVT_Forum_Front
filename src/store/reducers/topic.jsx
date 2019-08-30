@@ -5,11 +5,10 @@ const topic = (
 ) => {
   switch (action.type) {
     case 'GET_TOPIC_BY_ID':
+    case 'ADD_TOPIC':
       return action.payload;
     case 'RESET_TOPIC':
       return null;
-    case 'ADD_TOPIC':
-      return action.payload;
     default:
       return state;
   }
